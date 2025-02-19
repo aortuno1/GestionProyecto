@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar producto</title>
+    <style>
+        body{
+            background-color: #9CEFCB;
+            color: #fff;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        form{
+            margin: auto;
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        label{
+            display: block;
+        }
+        input{
+            width: 100%;
+            padding: 5px;
+        }
+        .checkbox{
+            float: left;
+        }
+        button{
+            width: 100%;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            background-color: transparent;
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Agregar nuevo producto</h1>
+<form action="/inventario/guardar" method="post">
+    <div>
+        <label>
+            Nombre:
+        </label>
+        <input type="text" name="nombre" th:value="${producto.nombre}" required>
+    </div>
+    <div>
+        <label>Precio</label>
+        <input type="number" name="precio" th:value="${producto.precio}" required>
+    </div>
+    <button type="submit">Guardar</button>
+</form>
+
+</body>
+</html>

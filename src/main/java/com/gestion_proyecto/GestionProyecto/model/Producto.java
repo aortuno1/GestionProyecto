@@ -1,11 +1,15 @@
 package com.gestion_proyecto.GestionProyecto.model;
 
 public class Producto {
+
+    private static int contador = 1;
     private int idProducto;
     private String nombre;
     private double precio;
 
-    public Producto(){}
+    public Producto(){
+        this.idProducto = contador++;
+    }
 
     public Producto(int idProducto, String nombre, double precio) {
         this.idProducto = idProducto;

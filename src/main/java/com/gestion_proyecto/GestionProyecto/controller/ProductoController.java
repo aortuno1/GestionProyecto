@@ -19,7 +19,7 @@ public class ProductoController {
     @GetMapping
     public String Producto(Model model, @ModelAttribute("message") String message) {
         model.addAttribute("message", message);
-        model.addAttribute("inventario", productoService.obtenerProducto());
+        model.addAttribute("inventario", productoService.obtenerProductos());
         return "producto";
     }
 
@@ -31,7 +31,7 @@ public class ProductoController {
 
     @PostMapping("/guardar")
     public String guardarProducto(@ModelAttribute Producto producto, RedirectAttributes redirectAttributes) {
-        productoService.guardarProducto(producto);
+        productoService.agregarProducto(producto);
         redirectAttributes.addFlashAttribute("guardar", "Contacto guardado");
         return "redirect:/producto";
 
@@ -58,7 +58,7 @@ public class ProductoController {
 
     @PostMapping("/actualizar/{id}")
     public String actualizarProducto(@PathVariable int id, Producto producto, RedirectAttributes redirectAttributes) {
-        productoService.actualizarProducto(id, producto);
+        productoService.modificarProducto(id, producto);
         redirectAttributes.addFlashAttribute("actualizar", "Contacto actualizado");
         return "redirect:/producto";
     }

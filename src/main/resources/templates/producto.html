@@ -78,7 +78,7 @@
     <tr th:each="entry : ${inventario}">
         <td th:text="${entry.key}"></td>
         <td th:text="${entry.value.nombre}"></td>
-        <td th:text="${entry.value.precio}"></td>
+        <td th:text="${#numbers.formatDecimal(entry.value.precio, 1, 'COMMA', 'POINT')}"></td>
         <td>
             <a class="editar" th:href="@{'/inventario/editar/' + ${entry.key}}">✏</a>
             <form th:action="@{'/inventario/eliminar/' + ${entry.key}}" method="post" style="display: inline;">

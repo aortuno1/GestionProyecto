@@ -20,7 +20,7 @@ public class ProductoController {
     public String Producto(Model model, @ModelAttribute("message") String message) {
         model.addAttribute("message", message);
         model.addAttribute("inventario", productoService.obtenerProductos());
-        return "producto";
+        return "inventario";
     }
 
     @GetMapping("/nuevo")
@@ -32,35 +32,35 @@ public class ProductoController {
     @PostMapping("/guardar")
     public String guardarProducto(@ModelAttribute Producto producto, RedirectAttributes redirectAttributes) {
         productoService.agregarProducto(producto);
-        redirectAttributes.addFlashAttribute("guardar", "Contacto guardado");
-        return "redirect:/producto";
+        redirectAttributes.addFlashAttribute("guardar", "Producto guardado");
+        return "redirect:/inventario";
 
     }
 
     @PostMapping("eliminar/{id}")
-    public String eliminarContacto(@PathVariable int id, RedirectAttributes redirectAttributes) {
+    public String eliminarProducto(@PathVariable int id, RedirectAttributes redirectAttributes) {
         boolean eliminado = productoService.eliminarProducto(id);
         if(eliminado) {
-            redirectAttributes.addFlashAttribute("eliminar", "Contacto eliminado");
+            redirectAttributes.addFlashAttribute("eliminar", "Producto eliminado");
         }
         else {
-            redirectAttributes.addFlashAttribute("eliminar", "Contacto no eliminado");
+            redirectAttributes.addFlashAttribute("eliminar", "Producto no eliminado");
         }
-        return "redirect:/producto";
+        return "redirect:/inventario";
     }
 
     @GetMapping("/editar/{id}")
     public String editarProducto(@PathVariable int id, Model model) {
         Producto producto = productoService.obtenerProductoPorId(id);
-        model.addAttribute("contacto", producto);
-        return "editarContacto";
+        model.addAttribute("producto", producto);
+        return "editarProducto";
     }
 
     @PostMapping("/actualizar/{id}")
     public String actualizarProducto(@PathVariable int id, Producto producto, RedirectAttributes redirectAttributes) {
         productoService.modificarProducto(id, producto);
-        redirectAttributes.addFlashAttribute("actualizar", "Contacto actualizado");
-        return "redirect:/producto";
+        redirectAttributes.addFlashAttribute("actualizar", "Producto actualizado");
+        return "redirect:/inventario";
     }
 
 }
